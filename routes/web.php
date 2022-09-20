@@ -24,7 +24,7 @@ Route::middleware(('auth'))
     //  aggiorna la cartella all'interno della quale si trovano i controller
     ->namespace('Admin')
     //  aggiorna il name di ogni "subroute" con prefisso admin.
-    ->name('admin')
+    ->name('admin.')
     // aggiorna ogni url con un prefisso admin/
     ->prefix('admin')
     //raggruppa varie rotte
