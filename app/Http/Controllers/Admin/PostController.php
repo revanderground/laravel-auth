@@ -66,7 +66,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
-        return view('admin.posts.show',  ['post'=> $post]);
+        return view('admin.posts.show',  compact('post'));
     }
 
     /**
@@ -92,14 +92,14 @@ class PostController extends Controller
     {
         $request->validate($this->validationRules);
 
-        $oldPost = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
         $data = $request->all();
 
-        $data['author'] = $oldPost->author;
-        $data['post_date'] = $oldPost->post_date;
+        $data['author'] = $post->author;
+        $data['post_date'] = $post->post_date;
 
-        $oldPost->update($data);
-        return redirect()->route('admin.posts.show', ['id' => $oldPost->id])->with('success', 'The post ' .$data["title"] . ' has been modified successfully' );
+        $post->update($data);
+        return redirect()->route('admin.posts.index', ['id' => $post->id])->with('success', 'The post ' .$data["title"] . ' has been modified successfully' );
     }
 
     /**

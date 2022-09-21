@@ -6,19 +6,23 @@
     <div class="row">
         <div class="col-12">
 
-            <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
-                @csrf
-                @method('PUT')
+            <div class="form-group py-3 d-inline" >
+                <form action="{{ route('admin.posts.update', $post->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
 
-                @include ('admin.posts.includes.form')
+                    @include ('admin.posts.includes.form')
 
-                <div class="form-group p-3 text-center">
-                    <button type="submit" class="btn btn-primary">
-                        Edit post
-                    </button>
-                </div>
+                    <div class="form-group p-3 text-center">
+                        <button type="submit" class="btn btn-sm btn-primary">
+                            Edit post
+                        </button>
+                    </div>
 
-            </form>
+                </form>
+
+            </div>
+
 
         </div>
     </div>
