@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     private $validationRules = [
-        'title' => 'min:3|max:255|required|unique:posts,title|alpha',
+        'title' => 'min:3|max:255|required|alpha|unique:posts,title',
         'post_content' => 'min:5|required',
         'post_image' => 'active_url',
     ];

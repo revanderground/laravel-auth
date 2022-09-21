@@ -1,13 +1,13 @@
 <div class="form-group py-3 py-3">
     <label for="input-title">Title</label>
     <input type="text" class="form-control" class="@error('title') is-invalid @enderror" id="input-post-title" name="title"
-    value="{{ request()->routeIs('admin.posts.edit') ? $post->title : '' }}" required>
+    value="{{ request()->routeIs('admin.posts.edit') ? $post->title : '' }}">
     <small id="titleHint" class="form-text text-muted">
         Insert here your post's title
     </small>
     @error('title')
         <div class="alert alert-danger">
-            {{ $$message }}
+            {{ $message }}
         </div>
     @enderror
 </div>
@@ -20,7 +20,7 @@
     </textarea>
     @error('post_content')
         <div class="alert alert-danger">
-            {{ $$message }}
+            {{ $message }}
         </div>
     @enderror
 
@@ -30,10 +30,10 @@
 <div class="form-group py-3">
     <label for="input-post-image">Image for your post</label>
     <input type="text" class="form-control"  class="@error('title') is-invalid @enderror" name="post_image" id="input-post-image"
-    value="{{ request()->routeIs('admin.posts.edit') ? $post->post_image : '' }}" required>
+    value="{{ request()->routeIs('admin.posts.edit') ? $post->post_image : '' }}">
     @error('post_image')
         <div class="alert alert-danger">
-            {{ $$message }}
+            {{ $message }}
         </div>
     @enderror
 
