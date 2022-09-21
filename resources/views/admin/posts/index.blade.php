@@ -12,6 +12,13 @@
                     </p>
                 </div>
             @endif
+            @if (session('deleted'))
+            <div class="alert alert-success">
+                <p>
+                    {{ session('deleted') }}
+                </p>
+            </div>
+            @endif
             <table class="table table-dark table-striped">
                 <thead>
                   <tr>
@@ -41,10 +48,10 @@
                                 <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-sm btn-primary">
                                     View
                                 </a>
-                                <a href="http://" class="btn btn-sm btn-success">
+                                <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-sm btn-success">
                                     Edit
                                 </a>
-                                <a href="http://" class="btn btn-sm btn-danger">
+                                <a href="{{ route('admin.posts.destroy', $post->id) }}" class="btn btn-sm btn-danger">
                                     Delete
                                 </a>
                             </td>
