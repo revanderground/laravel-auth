@@ -18,6 +18,14 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('admin.home');
+                //Get authenticated user
+                $user = Auth::user();
+
+                //Get authenticated user'sID
+                $id = Auth::id();
+
+
+                return view('admin.home', ['id' => $id, 'user' => $user]);
+
     }
 }
