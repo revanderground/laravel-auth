@@ -5,7 +5,13 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <p>
+                        {{ session('success') }}
+                    </p>
+                </div>
+            @endif
             <table class="table table-dark table-striped">
                 <thead>
                   <tr>
@@ -32,6 +38,9 @@
                             </td>
 
                             <td>
+                                <a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-sm btn-primary">
+                                    View
+                                </a>
                                 <a href="http://" class="btn btn-sm btn-success">
                                     Edit
                                 </a>

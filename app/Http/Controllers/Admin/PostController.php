@@ -4,10 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    private $validationRules = [
+        'title' => 'min:3|max:255|required|unique:posts,title|alpha',
+        'post_content' => 'min:5|required',
+        'post_image' => 'active_url',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +34,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $post = new Post();
+        return view ('admin.posts.create', ['post'=> $post]);
     }
 
     /**
@@ -37,7 +46,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validationRules);
+
+        $data = $request->all();
+
+        $data['author'] = Auth::user()->name;
+        $data['post_date'] = new DateTime();
+
+        Post::create($data);
+        return redirect()->route('admin.posts.index')->with('success', 'The post ' .$data["title"] . ' has been created successfully' );
     }
 
     /**
@@ -48,7 +65,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('admin.posts.show',  ['post'=> $post]);
     }
 
     /**
@@ -59,7 +77,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view ('admin.posts.edit', compact("post"));
     }
 
     /**
@@ -71,7 +90,16 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate($this->validationRules);
+
+        $oldPost = Post::findOrFail($id);
+        $data = $request->all();
+
+        $data['author'] = $oldPost->author;
+        $data['post_date'] = $oldPost->post_date;
+
+        $oldPost->update($data);
+        return redirect()->route('admin.posts.show', ['id' => $oldPost->id])->with('success', 'The post ' .$data["title"] . ' has been modified successfully' );
     }
 
     /**
