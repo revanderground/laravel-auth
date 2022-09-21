@@ -40,10 +40,5 @@
 
 </div>
 
-<div class="form-group p-3 text-center">
-    <button type="submit" class="btn btn-primary">
-        Save & Publish
-    </button>
-</div>
 
 
