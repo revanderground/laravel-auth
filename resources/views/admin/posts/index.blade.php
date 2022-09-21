@@ -51,9 +51,13 @@
                                 <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-sm btn-success">
                                     Edit
                                 </a>
-                                <a href="{{ route('admin.posts.destroy', $post->id) }}" class="btn btn-sm btn-danger">
-                                    Delete
-                                </a>
+                                <form class="d-inline" action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        Delete
+                                    </button>
+                                </form>
                             </td>
 
                         </tr>
