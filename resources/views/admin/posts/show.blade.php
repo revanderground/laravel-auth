@@ -4,9 +4,9 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
+        <div class="col-10 mx-auto">
 
-            <div class="card">
+            <div class="card my-card">
                 <div class="card-body">
 
                     <div class="card-title text-center">
@@ -17,13 +17,13 @@
                         <img class = "w-50" src="{{ $post->post_image }}" alt="post-image">
                     </div>
 
-                    <div class="subtitle">
+                    <div class="subtitle my-3">
                         Post with id: {{ $post->id }} | Post written on the: {{ $post->post_date }}
                         by {{ $post->author }}
 
                     </div>
 
-                    <div class="card-text">
+                    <div class="card-text my-3">
                         {{ $post->post_content }}
                     </div>
 

@@ -10966,3 +10966,7 @@ a.text-dark:focus {
   }
 }
 
+.my-card {
+  background-color: rgb(218, 238, 255);
+}
+
